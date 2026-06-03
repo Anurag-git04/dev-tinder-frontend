@@ -111,15 +111,15 @@ const EditProfile = ({ user }) => {
                                             className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow"
                                         >
                                             <li>
-                                                <button onClick={() => setGender("Male")}>Male</button>
+                                                <button onClick={() => setGender("male")}>Male</button>
                                             </li>
                                             <li>
-                                                <button onClick={() => setGender("Female")}>
+                                                <button onClick={() => setGender("female")}>
                                                     Female
                                                 </button>
                                             </li>
                                             <li>
-                                                <button onClick={() => setGender("Others")}>
+                                                <button onClick={() => setGender("others")}>
                                                     Others
                                                 </button>
                                             </li>

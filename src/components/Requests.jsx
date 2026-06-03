@@ -2,21 +2,20 @@ import axios from "axios"
 import { BASE_URL } from "../utils/constants"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { addConnection } from "../utils/connectionSlice";
-import { removeRequests } from "../utils/requestSlice";
+import { addRequests, removeRequests } from "../utils/requestSlice";
 
 const Requests = () => {
 
-    const requests = useSelector((store) => store.requests)
-
     const dispatch = useDispatch();
+    const requests = useSelector((store) => store.request)
+
     const fetchRequests = async () => {
         try {
-            const res = await axios.get(BASE_URL + "/users/requests", {
+            const res = await axios.get(BASE_URL + "/users/requests/received", {
                 withCredentials: true
             })
             console.log('requests', res.data)
-            dispatch(addConnection(res.data.data))
+            dispatch(addRequests(res.data.data))
         } catch (error) {
             //Handle error
             console.log(error)
@@ -25,11 +24,11 @@ const Requests = () => {
 
     useEffect(() => {
         fetchRequests()
-    }, [])
+    }, [dispatch])
 
-    if (!requests) return;
+    console.log('Redux requests state:', requests)
 
-    if (requests.length === 0) {
+    if (!requests || requests.length === 0) {
         return (
             <div className="text-center my-10">
                 <p className="text-2xl font-bold">No Requests Found</p>
@@ -37,10 +36,12 @@ const Requests = () => {
         )
     }
 
+
+
     const reviewRequest = async (status, requestId) => {
         try {
             const res = await axios.post(
-                BASE_URL + "/requests/review/" + status + "/" + requestId,
+                BASE_URL + "/request/review/" + status + "/" + requestId,
                 {
                     requestId,
                     status
