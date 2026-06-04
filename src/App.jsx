@@ -1,13 +1,13 @@
 // import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Provider } from "react-redux"
-import appStore from "./utils/appstore"
+import appStore from "./utils/appStore"
 import { Body } from "./components/Body"
 import { Login } from "./components/Login"
 import { Profile } from "./components/profile"
 import Feed from "./components/Feed"
 import Connections from "./components/Connections"
-import Requests from "./components/requests"
+import Requests from "./components/Requests"
 // import Requests from "./components/requests"
 
 function App() {
